@@ -171,10 +171,10 @@ class Mass {
         let link = document.querySelector(a);
 
 
-        
+        console.log(this.obj.dataset.info);
         if(!div.contains(link)){
             let str =  `<div class="error__${this.obj.name}"">
-                            ОШИБКА в поле ${this.obj.placeholder}
+                            <p> ОШИБКА в поле ${this.obj.placeholder} ${this.obj.dataset.info}</p>
                         </div>`;
 
             div.insertAdjacentHTML('afterbegin', str);
