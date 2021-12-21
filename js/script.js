@@ -174,7 +174,7 @@ class Mass {
         
         if(!div.contains(link)){
             let str =  `<div class="error__${this.obj.name}"">
-                            ОШИБКА в ${this.obj.placeholder}
+                            ОШИБКА в поле ${this.obj.placeholder}
                         </div>`;
 
             div.insertAdjacentHTML('afterbegin', str);
