@@ -34,8 +34,11 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-color: rosybrown;
   top: 11px;
   right: 1px;
+  width: 150px;
+  height: 200px;
 }
 
 .error {

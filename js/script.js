@@ -16,8 +16,6 @@ class Form {
             if (item.nodeName == 'INPUT') {
 
                 let input = new CheckRoute(item);
-                // console.log(input);
-                // console.log(input.state);
                 if (input.state == false) {
                     e.preventDefault();
                 }
@@ -36,7 +34,7 @@ class CheckRoute {
     }
 
     _init() {
-        //console.log(this.input.name);
+        
         if (this.input.name == 'name') {
             let check = new CheckName(this.input);
             this.state = check.state;
@@ -74,7 +72,7 @@ class CheckName extends Check {
         this._init();
     }
     _init() {
-        //console.log(this.object.value);
+        
         let style = new Style(this.object);
         let check = this.object.value.search(/^[a-zа-яA-ZА-ЯёЁ0-9_-]{4,10}$/g)
         if (check == -1) {
@@ -98,7 +96,7 @@ class CheckNumber extends Check {
     }
 
     _init() {
-        //console.log(this.object.value);
+        
         let style = new Style(this.object);
         let check = this.object.value.search(/^\+7[0-9]{10}$/g)
         if (check == -1) {
@@ -122,7 +120,7 @@ class CheckEmail extends Check {
     }
 
     _init() {
-        //console.log(this.object.value);
+        
         let style = new Style(this.object);
         let check = this.object.value.search(/^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-z]{2,4}$/g)
         if (check == -1) {
@@ -149,61 +147,52 @@ class Style extends Check {
     }
 
     addFail(){
+        let a = new Mass(this.object);
+        a.errorAdd();
         this.object.classList.add('fail');
     }
     removeFail(){
+        let a = new Mass(this.object);
+        a.errorRemove();
         this.object.classList.remove('fail');
     }
 }
 
-// class Massege extends Check {
-//     constructor(object) {
-//         super(object);
-//         this._init();
-//         this.str = ''
-//     }
+class Mass {
+    constructor(obj, container = '.error__box'){
+        this.obj = obj;
+        this.div = container;
+    }
 
-//     _init() {
-//         console.log(this.object);
-//         this.record();
-//         console.log(this.str);
+    errorAdd(){
 
-//     }
+        let div = document.querySelector(this.div);
+        let a = `.error__${this.obj.name}`
+        let link = document.querySelector(a);
 
-//     record() {
 
-//         if (this.object.name == 'name') {
-//             this.str = `<div class="error">
-//                             <p>У вас в поле ${this.object.placeholder} ошибка.</p>
-//                             <span>Возможны буквы латинские или кирилица, без цифр, одно слово без пробелов</span>
-//                         </div>`;
-//         }
         
-//         if (this.object.name == 'number') {
-//             this.str = `<div class="error">
-//                             <p>У вас в поле ${this.object.placeholder} ошибка.</p>
-//                             <span>Телефон должен выглядет так +79101277250 </span>
-//                         </div>`;
-//         }
+        if(!div.contains(link)){
+            let str =  `<div class="error__${this.obj.name}"">
+                            ОШИБКА в ${this.obj.placeholder}
+                        </div>`;
 
-//         if (this.object.name == 'email') {
-//             this.str = `<div class="error">
-//                             <p>У вас в поле ${this.object.placeholder} ошибка.</p>
-//                             <span>Email должен выглядет так name@name.name</span>
-//                         </div>`;
-//         }
+            div.insertAdjacentHTML('afterbegin', str);
+        } 
 
-//         this.render();
+    }
 
-//     }
+    errorRemove(){
+        let div = document.querySelector(this.div);
+        let a = `.error__${this.obj.name}`
+        let link = document.querySelector(a);
 
-//     render(){
         
-//         console.log(this.object.parentNode);
-//         let errorBox = document.querySelector('.error__box')
-//         errorBox.insertAdjacentHTML('afterbegin', this.str);
-//     }
+        if(div.contains(link)){
+            link.remove();
+        }  
+    }
+}
 
-// }
 
 new Form();
