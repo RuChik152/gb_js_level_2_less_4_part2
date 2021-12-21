@@ -75,15 +75,14 @@ class CheckName extends Check {
     }
     _init() {
         //console.log(this.object.value);
-        //let style = new Style(this.object);
+        let style = new Style(this.object);
         let check = this.object.value.search(/^[a-zа-яA-ZА-ЯёЁ0-9_-]{4,10}$/g)
         if (check == -1) {
-            //let error = new Massege(this.object);
-            //style.addFail();
+            style.addFail();
             this.state = false;
             return this.state;
         } else {
-            //style.removeFail();
+            style.removeFail();
             this.state = true;
             return this.state;
         }
@@ -100,15 +99,15 @@ class CheckNumber extends Check {
 
     _init() {
         //console.log(this.object.value);
-        //let style = new Style(this.object);
+        let style = new Style(this.object);
         let check = this.object.value.search(/^\+7[0-9]{10}$/g)
         if (check == -1) {
-            //let error = new Massege(this.object);
-            //style.addFail();
+
+            style.addFail();
             this.state = false;
             return this.state;
         } else {
-            //style.removeFail();
+            style.removeFail();
             this.state = true;
             return this.state;
         }
@@ -124,15 +123,14 @@ class CheckEmail extends Check {
 
     _init() {
         //console.log(this.object.value);
-        //let style = new Style(this.object);
+        let style = new Style(this.object);
         let check = this.object.value.search(/^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-z]{2,4}$/g)
         if (check == -1) {
-            //let error = new Massege(this.object);
-            //style.addFail();
+            style.addFail();
             this.state = false;
             return this.state;
         } else {
-            //style.removeFail();
+            style.removeFail();
             this.state = true;
             return this.state;
         }
@@ -143,7 +141,7 @@ class CheckEmail extends Check {
 class Style extends Check {
     constructor(object){
         super(object);
-        this._init();
+
     }
 
     _init(){
