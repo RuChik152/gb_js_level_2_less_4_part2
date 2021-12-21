@@ -1,5 +1,8 @@
 "use strict";
 
+/**
+ * Клас отвечающий за инициализацию и нахначающий обработчик
+ */
 class Form {
     constructor(container = '.form') {
         this.container = container;
@@ -25,7 +28,9 @@ class Form {
     }
 }
 
-
+/**
+ * Класс отвечающий за маршрутизацию, в него передаються данные из класса Form и на основе них он принимает решение какой класс првоерки создавать.
+ */
 class CheckRoute {
     constructor(input) {
         this.input = input;
@@ -54,6 +59,9 @@ class CheckRoute {
     }
 }
 
+/**
+ * Родительский класс для проверки 
+ */
 class Check {
     constructor(object, pattern = '') {
         this.object = object;
@@ -66,6 +74,10 @@ class Check {
     }
 }
 
+
+/**
+ * Класс проверяет на основе заложенных данных то что ввел пользователь в поле для имени, если введены данне соотвесвуют, то возвращает true, если нет, то false
+ */
 class CheckName extends Check {
     constructor(object, state, parent = '') {
         super(object, state, parent);
@@ -89,6 +101,9 @@ class CheckName extends Check {
     }
 }
 
+/**
+ * Класс проверяет на основе заложенных данных то что ввел пользователь в поле для телефона, если введены данне соотвесвуют, то возвращает true, если нет, то false
+ */
 class CheckNumber extends Check {
     constructor(object, state, parent = '') {
         super(object, state, parent);
@@ -113,6 +128,9 @@ class CheckNumber extends Check {
 
 }
 
+/**
+ * Класс проверяет на основе заложенных данных то что ввел пользователь в поле для E-MAIL, если введены данне соотвесвуют, то возвращает true, если нет, то false
+ */
 class CheckEmail extends Check {
     constructor(object, state, parent = '') {
         super(object, state, parent);
@@ -135,7 +153,9 @@ class CheckEmail extends Check {
     }
 }
 
-
+/**
+ * Класс назначет или убирает селектор fail с блока, так же инициализирует класс Mass
+ */
 class Style extends Check {
     constructor(object){
         super(object);
@@ -158,6 +178,10 @@ class Style extends Check {
     }
 }
 
+
+/**
+ * Класс для генерации и вставки в разметку страницы сообщений если произошла ошибка, так же для удаления сообщений об ошибки если поблема устранена.
+ */
 class Mass {
     constructor(obj, container = '.error__box'){
         this.obj = obj;
